@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MvpFrameworkKotlin</string>
+
+    <string name="no_network_connection">请检查网络连接</string>
+
+    <string name="error_network">网络错误</string>
+    <string name="error_parse">解析错误</string>
+    <string name="error_connection">连接服务器失败</string>
+    <string name="error_unknown">未知错误</string>
+</resources>
