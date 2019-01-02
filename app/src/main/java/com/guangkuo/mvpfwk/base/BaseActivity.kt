@@ -19,7 +19,7 @@ import javax.inject.Inject
  *
  * @param <P> Presenter
  */
-abstract class BaseActivity<P : BaseContract.BasePresenter<BaseContract.BaseView>> : AppCompatActivity(), BaseContract.BaseView {
+abstract class BaseActivity<P : BasePresenter<BaseContract.BaseView>> : AppCompatActivity(), BaseContract.BaseView {
     @Inject
     lateinit var mPresenter: P
     protected lateinit var mActivityComponent: ActivityComponent
@@ -29,12 +29,8 @@ abstract class BaseActivity<P : BaseContract.BasePresenter<BaseContract.BaseView
 
     /**
      * 是否显示返回键
-     *
-     * @return
      */
-    protected fun showHomeAsUp(): Boolean {
-        return false
-    }
+    protected var isShowHomeAsUp: Boolean = false
 
     protected abstract fun initInjector()
 
@@ -61,10 +57,10 @@ abstract class BaseActivity<P : BaseContract.BasePresenter<BaseContract.BaseView
     override fun stopLoading() {}
 
     override fun onLoadFailed(ex: ApiException) {
-        ToastUtils.showLong(ex.msg)
+        ToastUtils.showShort(ex.msg)
     }
 
-    override fun onLoadSuccess(result: Any) {}
+    override fun <T> onLoadSuccess(result: T) {}
 
     override fun onDestroy() {
         super.onDestroy()
@@ -86,10 +82,7 @@ abstract class BaseActivity<P : BaseContract.BasePresenter<BaseContract.BaseView
     }
 
     protected fun setToolbarTitle(title: String) {
-        val bar = supportActionBar
-        if (bar != null) {
-            bar.title = title
-        }
+        supportActionBar?.title = title
     }
 
     /**
@@ -108,14 +101,11 @@ abstract class BaseActivity<P : BaseContract.BasePresenter<BaseContract.BaseView
             throw NullPointerException("toolbar can not be null")
         }
         setSupportActionBar(mToolbar)
-        val bar = supportActionBar
-        if (bar != null) {
-            bar.setDisplayHomeAsUpEnabled(showHomeAsUp())
-            // toolbar除掉阴影
-            bar.elevation = 0f
-        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(isShowHomeAsUp)
+        // toolbar除掉阴影
+        supportActionBar?.elevation = 0f
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mToolbar!!.elevation = 0f
+            mToolbar?.elevation = 0f
         }
     }
 

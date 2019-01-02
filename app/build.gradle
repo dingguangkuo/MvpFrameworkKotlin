@@ -56,6 +56,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     // OkHttp3 logging-interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    // Cookie interceptor
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     // BaseRecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
 }

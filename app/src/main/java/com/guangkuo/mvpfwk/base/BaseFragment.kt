@@ -37,20 +37,16 @@ abstract class BaseFragment<P : BaseContract.BasePresenter<BaseContract.BaseView
         initFragmentComponent()
         initInjector()
         attachView()
+        val isHidden = savedInstanceState?.getBoolean(STATE_SAVE_IS_HIDDEN)
+        val ft = fragmentManager?.beginTransaction()
+        if (isHidden == true) {
+            ft?.hide(this)
+        } else {
+            ft?.show(this)
+        }
+        ft?.commit()
         if (!NetworkUtils.isConnected()) {
             showNoNet()
-        }
-        if (savedInstanceState != null) {
-            val isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN)
-            if (fragmentManager != null) {
-                val ft = fragmentManager!!.beginTransaction()
-                if (isSupportHidden) {
-                    ft.hide(this)
-                } else {
-                    ft.show(this)
-                }
-                ft.commit()
-            }
         }
     }
 
@@ -75,7 +71,7 @@ abstract class BaseFragment<P : BaseContract.BasePresenter<BaseContract.BaseView
 
     override fun onLoadFailed(ex: ApiException) {}
 
-    override fun onLoadSuccess(result: Any) {}
+    override fun <T> onLoadSuccess(result: T) {}
 
     override fun showNoNet() {
         ToastUtils.showShort(R.string.no_network_connection)
@@ -124,6 +120,6 @@ abstract class BaseFragment<P : BaseContract.BasePresenter<BaseContract.BaseView
     }
 
     companion object {
-        private val STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN"
+        private const val STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN"
     }
 }

@@ -13,7 +13,8 @@ import dagger.Component
  * Created by Guangkuo on 2018/12/29.
  */
 @PerFragment
-@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(FragmentModule::class))
+@Component(dependencies = arrayOf(AppComponent::class),
+        modules = arrayOf(FragmentModule::class))
 interface FragmentComponent {
     @get:ContextLife("Activity")
     val activityContext: Context?

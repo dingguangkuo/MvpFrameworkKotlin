@@ -35,7 +35,7 @@ interface BaseContract {
          *
          * @param result 服务器返回数据
          */
-        fun onLoadSuccess(result: Any)
+        fun <T> onLoadSuccess(result: T)
 
         /**
          * 显示当前网络不可用

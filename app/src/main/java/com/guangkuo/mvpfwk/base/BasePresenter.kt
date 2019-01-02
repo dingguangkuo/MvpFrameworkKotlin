@@ -12,8 +12,6 @@ open class BasePresenter<T : BaseContract.BaseView> : BaseContract.BasePresenter
     }
 
     override fun detachView() {
-        if (mView != null) {
-            mView = null
-        }
+        mView = null
     }
 }

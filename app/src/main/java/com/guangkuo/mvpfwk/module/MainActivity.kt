@@ -1,7 +1,8 @@
-package com.guangkuo.mvpfwk
+package com.guangkuo.mvpfwk.module
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.guangkuo.mvpfwk.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

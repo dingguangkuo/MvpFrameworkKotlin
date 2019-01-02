@@ -12,7 +12,8 @@ import dagger.Component
  * Created by Guangkuo on 2018/12/29.
  */
 @PerActivity
-@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(ActivityModule::class))
+@Component(dependencies = arrayOf(AppComponent::class),
+        modules = arrayOf(ActivityModule::class))
 interface ActivityComponent {
     @get:ContextLife("Activity")
     val activityContext: Context
