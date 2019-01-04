@@ -5,6 +5,7 @@ import android.content.Context
 import com.guangkuo.mvpfwk.di.modules.ActivityModule
 import com.guangkuo.mvpfwk.di.scopes.ContextLife
 import com.guangkuo.mvpfwk.di.scopes.PerActivity
+import com.guangkuo.mvpfwk.module.user.UserActivity
 import dagger.Component
 
 /**
@@ -12,8 +13,8 @@ import dagger.Component
  * Created by Guangkuo on 2018/12/29.
  */
 @PerActivity
-@Component(dependencies = arrayOf(AppComponent::class),
-        modules = arrayOf(ActivityModule::class))
+@Component(dependencies = [AppComponent::class],
+        modules = [ActivityModule::class])
 interface ActivityComponent {
     @get:ContextLife("Activity")
     val activityContext: Context
@@ -25,6 +26,5 @@ interface ActivityComponent {
 
     // 这个部分可以先不写，
     // 未来需要注入哪个activity写下就可以了
-    // fun inject(activity: LoginActivity)
-    // fun inject(activity : RegisterActivity);
+    fun inject(activity: UserActivity)
 }

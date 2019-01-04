@@ -24,7 +24,8 @@ class AppModule(private val mApp: App) {
     }
 
     @Provides
-    @Singleton
+    @PerApp
+    @ContextLife
     internal fun providesSharedPreferences(): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(mApp)
     }

@@ -12,7 +12,7 @@ import dagger.Component
  * Created by Guangkuo on 2018/12/29.
  */
 @PerApp
-@Component(modules = arrayOf(AppModule::class))
+@Component(modules = [AppModule::class])
 interface AppComponent {
     @get:ContextLife
     val application: Context

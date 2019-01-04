@@ -1,8 +1,8 @@
-package com.guangkuo.mvpfwk.module.user.login
+package com.guangkuo.mvpfwk.module.user
 
 import com.guangkuo.mvpfwk.base.BaseContract
 
-interface LoginContract {
+interface UserContract {
     interface View : BaseContract.BaseView
 
     interface Presenter : BaseContract.BasePresenter<View> {

@@ -17,14 +17,14 @@ class FragmentModule(private val mFragment: Fragment) {
     @Provides
     @PerFragment
     @ContextLife("Activity")
-    fun provideActivityContext(): Context? {
-        return mFragment.context
+    fun provideActivityContext(): Context {
+        return mFragment.context!!
     }
 
     @Provides
     @PerFragment
-    fun provideActivity(): Activity? {
-        return mFragment.activity
+    fun provideActivity(): Activity {
+        return mFragment.activity!!
     }
 
     @Provides
