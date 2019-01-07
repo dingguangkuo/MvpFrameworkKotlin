@@ -1,6 +1,16 @@
 package com.guangkuo.mvpfwk.module.user.login
 
-import android.support.v4.app.Fragment
+import android.view.View
+import com.guangkuo.mvpfwk.R
+import com.guangkuo.mvpfwk.base.BaseFragment
 
-class BlankFragment : Fragment() {
+class LoginFragment : BaseFragment<LoginContract.View, LoginPresenter>(), LoginContract.View {
+    override val layoutId: Int
+        get() = R.layout.fragment_login
+
+    override fun initInjector() {
+    }
+
+    override fun initView(view: View?) {
+    }
 }

@@ -5,13 +5,5 @@ import com.guangkuo.mvpfwk.base.BaseContract
 interface UserContract {
     interface View : BaseContract.BaseView
 
-    interface Presenter : BaseContract.BasePresenter<View> {
-        /**
-         * 登录用户
-         *
-         * @param account  用户名
-         * @param password 密码
-         */
-        fun login(account: String, password: String)
-    }
+    interface Presenter : BaseContract.BasePresenter<View>
 }
