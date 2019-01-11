@@ -7,7 +7,7 @@
     tools:context=".module.user.UserActivity">
 
     <include
-        layout="@layout/custom_toolbar"
+        layout="@layout/custom_title"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

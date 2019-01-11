@@ -5,7 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import android.view.Window
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.app.App
 import com.guangkuo.mvpfwk.data.remote.error.ApiException
@@ -15,6 +15,7 @@ import com.guangkuo.mvpfwk.di.modules.ActivityModule
 import com.guangkuo.mvpfwk.utils.NetworkUtils
 import com.guangkuo.mvpfwk.utils.ToastUtils
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.custom_title.*
 import javax.inject.Inject
 
 /**
@@ -23,23 +24,24 @@ import javax.inject.Inject
  * @param <P> Presenter
  */
 abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : AppCompatActivity(), BaseContract.BaseView {
-    protected var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
+    protected val mCompositeDisposable: CompositeDisposable = CompositeDisposable()
     @Inject
     lateinit var mPresenter: P
     protected lateinit var mActivityComponent: ActivityComponent
-    protected var mToolbar: Toolbar? = null
 
     protected abstract val layoutId: Int
-
-    /**
-     * 是否显示返回键
-     */
-    protected var isShowHomeAsUp: Boolean = false
 
     // 权限申请相关
     private var mRequestPermissionCallback: RequestPermissionCallback? = null
 
     protected abstract fun initInjector()
+
+    /**
+     * 是否使用自定义标题
+     *
+     * true: 使用，false: 不使用
+     */
+    protected var useCustomTitle: Boolean = false
 
     protected abstract fun initView()
 
@@ -50,7 +52,11 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
         initActivityComponent()
         setContentView(layoutId)
         initInjector()
-        initToolBar()
+        if (useCustomTitle) {
+            // 设置自定义标题的布局资源
+            window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title)
+            initTitle()// 初始化Title
+        }
         attachView()
         initView()
         bindListener()
@@ -58,6 +64,27 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
             showNoNet()
         }
     }
+
+    /**
+     * 初始化Title
+     */
+    private fun initTitle() {
+        tvToolbarTitle.text = title
+        ivToolbarLeft.setOnClickListener { leftClickListener() }
+        ivToolbarRight.setOnClickListener { rightClickListener() }
+    }
+
+    /**
+     * Title左边按钮监听（此方法可以覆盖）
+     */
+    protected fun leftClickListener() {
+        finish()// 默认返回
+    }
+
+    /**
+     * Title右边按钮监听（此方法需要覆盖）
+     */
+    protected fun rightClickListener() {}
 
     override fun showLoading() {}
 
@@ -99,23 +126,6 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
      */
     private fun detachView() {
         mPresenter.detachView()
-    }
-
-    /**
-     * 初始化toolbar
-     */
-    protected fun initToolBar() {
-        mToolbar = findViewById(R.id.toolbar)
-        if (mToolbar == null) {
-            throw NullPointerException("toolbar can not be null")
-        }
-        setSupportActionBar(mToolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(isShowHomeAsUp)
-        // toolbar除掉阴影
-        supportActionBar?.elevation = 0f
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mToolbar?.elevation = 0f
-        }
     }
 
     private fun initActivityComponent() {

@@ -5,6 +5,8 @@ import android.content.Context
 import com.guangkuo.mvpfwk.di.modules.ActivityModule
 import com.guangkuo.mvpfwk.di.scopes.ContextLife
 import com.guangkuo.mvpfwk.di.scopes.PerActivity
+import com.guangkuo.mvpfwk.module.launcher.LauncherActivity
+import com.guangkuo.mvpfwk.module.main.MainActivity
 import com.guangkuo.mvpfwk.module.user.UserActivity
 import dagger.Component
 
@@ -26,5 +28,9 @@ interface ActivityComponent {
 
     // 这个部分可以先不写，
     // 未来需要注入哪个activity写下就可以了
+    fun inject(activity: LauncherActivity)
+
     fun inject(activity: UserActivity)
+
+    fun inject(activity: MainActivity)
 }

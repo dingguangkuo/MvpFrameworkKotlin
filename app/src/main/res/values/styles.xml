@@ -6,6 +6,23 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
     </style>
-
+    <!-- 启动页主题 -->
+    <style name="AppTheme.LauncherTheme">
+        <!-- 设置启动背景图，用这种方法解决启动白屏或黑屏问题 -->
+        <item name="android:windowBackground">@drawable/layer_launcher</item>
+    </style>
+    <!-- TitleBgStyle -->
+    <style name="TitleBgStyle">
+        <item name="android:background">@drawable/bg_title</item>
+    </style>
+    <!-- 使用自定义Title -->
+    <style name="AppTheme.UseCustomTitle">
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowTitleSize">@dimen/sp_16</item>
+        <item name="android:windowTitleBackgroundStyle">@style/TitleBgStyle</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>
