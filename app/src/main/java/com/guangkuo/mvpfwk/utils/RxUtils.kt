@@ -14,10 +14,10 @@ class RxUtils {
     /**
      * 倒计时监听
      */
-    abstract class CountdownListener {
-        open fun countdown(time: Long) {}
+    interface CountdownListener {
+        fun countdown(time: Long) {}
 
-        open fun countdownEnd() {}
+        fun countdownEnd() {}
     }
 
     companion object {

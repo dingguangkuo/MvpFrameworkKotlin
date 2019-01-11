@@ -1,5 +1,7 @@
 package com.guangkuo.mvpfwk.module.user
 
+import android.content.Context
+import android.content.Intent
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.base.BaseActivity
 

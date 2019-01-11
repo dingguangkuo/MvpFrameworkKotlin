@@ -1,7 +1,9 @@
 package com.guangkuo.mvpfwk.module.launcher
 
+import android.content.Intent
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.base.BaseActivity
+import com.guangkuo.mvpfwk.module.user.UserActivity
 import com.guangkuo.mvpfwk.utils.RxUtils
 
 /**
@@ -19,8 +21,10 @@ class LauncherActivity : BaseActivity<LauncherContract.View, LauncherPresenter>(
     }
 
     override fun bindListener() {
-        RxUtils.countdown(3L, object : RxUtils.CountdownListener() {
-            fun countdown(time: Long?) {}
+        RxUtils.countdown(3L, object : RxUtils.CountdownListener {
+            override fun countdownEnd() {
+                startActivity(Intent(this@LauncherActivity, UserActivity::class.java))
+            }
         })
     }
 }
