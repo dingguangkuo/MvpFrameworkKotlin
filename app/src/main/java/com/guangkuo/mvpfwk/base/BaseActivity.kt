@@ -39,9 +39,11 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
     /**
      * 是否使用自定义标题
      *
-     * true: 使用，false: 不使用
+     * return true: 使用，false: 不使用
      */
-    protected var useCustomTitle: Boolean = false
+    open fun useCustomTitle(): Boolean {
+        return false
+    }
 
     protected abstract fun initView()
 
@@ -52,7 +54,7 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
         initActivityComponent()
         setContentView(layoutId)
         initInjector()
-        if (useCustomTitle) {
+        if (useCustomTitle()) {
             // 设置自定义标题的布局资源
             window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title)
             initTitle()// 初始化Title

@@ -9,7 +9,7 @@ class DataResponse<T> {
     var result: Int = 200
 
     var msg: String? = null
-        get() = if (field == null) "" else field
+        get() = field ?: ""
 
     var data: T? = null
 }

@@ -43,6 +43,8 @@ abstract class BaseFragment<in V : BaseContract.BaseView, P : BaseContract.BaseP
 
     protected abstract fun initView(view: View?)
 
+    protected abstract fun bindListener()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initFragmentComponent()
@@ -69,6 +71,11 @@ abstract class BaseFragment<in V : BaseContract.BaseView, P : BaseContract.BaseP
         inflaterView(inflater, container)
         initView(mRootView)
         return mRootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bindListener()
     }
 
     override fun onDestroy() {

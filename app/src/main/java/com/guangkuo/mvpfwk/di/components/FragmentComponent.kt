@@ -5,8 +5,9 @@ import android.content.Context
 import com.guangkuo.mvpfwk.di.modules.FragmentModule
 import com.guangkuo.mvpfwk.di.scopes.ContextLife
 import com.guangkuo.mvpfwk.di.scopes.PerFragment
+import com.guangkuo.mvpfwk.module.user.login.LoginFragment
+import com.guangkuo.mvpfwk.module.user.register.RegisterFragment
 import dagger.Component
-
 
 /**
  *
@@ -26,5 +27,7 @@ interface FragmentComponent {
 
     // 这个部分可以先不写，
     // 未来需要注入哪个fragment写下就可以了
-    // fun inject(fragment: LoginFragment)
+    fun inject(fragment: LoginFragment)
+
+    fun inject(fragment: RegisterFragment)
 }

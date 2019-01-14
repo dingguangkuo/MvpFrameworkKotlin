@@ -9,6 +9,10 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     override val layoutId: Int
         get() = R.layout.activity_main
 
+    override fun useCustomTitle(): Boolean {
+        return true
+    }
+
     override fun initInjector() {
         mActivityComponent.inject(this)
     }
