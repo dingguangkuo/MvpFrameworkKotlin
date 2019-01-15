@@ -24,6 +24,7 @@ class LauncherActivity : BaseActivity<LauncherContract.View, LauncherPresenter>(
         RxUtils.countdown(3L, object : RxUtils.CountdownListener {
             override fun countdownEnd() {
                 startActivity(Intent(this@LauncherActivity, UserActivity::class.java))
+                finish()
             }
         })
     }

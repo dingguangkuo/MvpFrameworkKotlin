@@ -30,6 +30,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.main.MainActivity"
+            android:label="@string/brvah_app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.UseCustomTitle" />
     </application>

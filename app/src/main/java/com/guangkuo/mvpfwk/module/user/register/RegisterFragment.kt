@@ -31,6 +31,7 @@ class RegisterFragment : BaseFragment<RegisterContract.View, RegisterPresenter>(
         mCompositeDisposable.add(disposable)
         disposable = RxView.clicks(btnToMain).subscribe({
             startActivity(Intent(activity, MainActivity::class.java))
+            activity?.finish()
         })
         mCompositeDisposable.add(disposable)
     }

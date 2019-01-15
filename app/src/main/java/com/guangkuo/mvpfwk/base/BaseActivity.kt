@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
+import android.widget.ImageView
+import android.widget.TextView
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.app.App
 import com.guangkuo.mvpfwk.data.remote.error.ApiException
@@ -29,12 +31,14 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
     lateinit var mPresenter: P
     protected lateinit var mActivityComponent: ActivityComponent
 
+    protected var tvToolbarTitle: TextView? = null
+    protected var ivToolbarLeft: ImageView? = null
+    protected var ivToolbarRight: ImageView? = null
+
     protected abstract val layoutId: Int
 
     // 权限申请相关
     private var mRequestPermissionCallback: RequestPermissionCallback? = null
-
-    protected abstract fun initInjector()
 
     /**
      * 是否使用自定义标题
@@ -45,6 +49,15 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
         return false
     }
 
+    protected abstract fun initInjector()
+
+    open fun beforeInit() {
+        if (useCustomTitle()) {
+            // 在 setContentView 之前请求窗口特性
+            requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
+        }
+    }
+
     protected abstract fun initView()
 
     protected abstract fun bindListener()
@@ -52,13 +65,14 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initActivityComponent()
+        beforeInit()// 界面初始化前期准备
         setContentView(layoutId)
-        initInjector()
+        // 设置自定义标题的布局资源
         if (useCustomTitle()) {
-            // 设置自定义标题的布局资源
             window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title)
             initTitle()// 初始化Title
         }
+        initInjector()
         attachView()
         initView()
         bindListener()
@@ -71,9 +85,13 @@ abstract class BaseActivity<V : BaseContract.BaseView, P : BasePresenter<V>> : A
      * 初始化Title
      */
     private fun initTitle() {
-        tvToolbarTitle.text = title
-        ivToolbarLeft.setOnClickListener { leftClickListener() }
-        ivToolbarRight.setOnClickListener { rightClickListener() }
+        tvToolbarTitle = findViewById(R.id.tvToolbarTitle)
+        ivToolbarLeft = findViewById(R.id.ivToolbarLeft)
+        ivToolbarRight = findViewById(R.id.ivToolbarRight)
+
+        tvToolbarTitle?.text = title
+        ivToolbarLeft?.setOnClickListener { leftClickListener() }
+        ivToolbarRight?.setOnClickListener { rightClickListener() }
     }
 
     /**

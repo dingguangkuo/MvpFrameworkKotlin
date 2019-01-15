@@ -7,7 +7,6 @@ import android.view.View
 abstract class TransformAdapter : ViewPager.PageTransformer {
 
     override fun transformPage(page: View, position: Float) {
-
         if (position > 0 && position <= 1) {
             onRightScorlling(page, position)
         } else if (position < 0 && position >= -1) {
