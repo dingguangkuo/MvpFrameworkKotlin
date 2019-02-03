@@ -1,4 +1,4 @@
-package com.guangkuo.mvpfwk.base
+package com.guangkuo.mvpfwk.callback
 
 /**
  * 权限请求回调

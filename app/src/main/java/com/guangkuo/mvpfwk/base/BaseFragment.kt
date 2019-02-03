@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.app.App
+import com.guangkuo.mvpfwk.callback.RequestPermissionCallback
 import com.guangkuo.mvpfwk.data.remote.error.ApiException
 import com.guangkuo.mvpfwk.di.components.DaggerFragmentComponent
 import com.guangkuo.mvpfwk.di.components.FragmentComponent

@@ -1,4 +1,4 @@
-package com.guangkuo.mvpfwk.base
+package com.guangkuo.mvpfwk.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

@@ -2,7 +2,7 @@ package com.guangkuo.mvpfwk.module.user
 
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.base.BaseActivity
-import com.guangkuo.mvpfwk.base.CommonFragmentPagerAdapter
+import com.guangkuo.mvpfwk.adapter.CommonFragmentPagerAdapter
 import com.guangkuo.mvpfwk.module.user.login.LoginFragment
 import com.guangkuo.mvpfwk.module.user.register.RegisterFragment
 import com.guangkuo.mvpfwk.utils.TransformUtils

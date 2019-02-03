@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.app.App
+import com.guangkuo.mvpfwk.callback.RequestPermissionCallback
 import com.guangkuo.mvpfwk.data.remote.error.ApiException
 import com.guangkuo.mvpfwk.di.components.ActivityComponent
 import com.guangkuo.mvpfwk.di.components.DaggerActivityComponent
@@ -17,7 +18,6 @@ import com.guangkuo.mvpfwk.di.modules.ActivityModule
 import com.guangkuo.mvpfwk.utils.NetworkUtils
 import com.guangkuo.mvpfwk.utils.ToastUtils
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.custom_title.*
 import javax.inject.Inject
 
 /**
