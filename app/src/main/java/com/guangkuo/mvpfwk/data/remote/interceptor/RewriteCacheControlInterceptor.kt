@@ -1,6 +1,6 @@
 package com.guangkuo.mvpfwk.data.remote.interceptor
 
-import com.guangkuo.mvpfwk.utils.NetworkUtils
+import com.blankj.utilcode.util.NetworkUtils
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response

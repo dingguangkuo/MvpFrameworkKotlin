@@ -1,6 +1,6 @@
 package com.guangkuo.mvpfwk.data.remote.observer
 
-import com.guangkuo.mvpfwk.utils.LogUtils
+import com.blankj.utilcode.util.LogUtils
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.annotations.NonNull

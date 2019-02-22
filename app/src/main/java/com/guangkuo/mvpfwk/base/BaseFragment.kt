@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.blankj.utilcode.util.NetworkUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.app.App
 import com.guangkuo.mvpfwk.callback.RequestPermissionCallback
@@ -16,8 +18,6 @@ import com.guangkuo.mvpfwk.data.remote.error.ApiException
 import com.guangkuo.mvpfwk.di.components.DaggerFragmentComponent
 import com.guangkuo.mvpfwk.di.components.FragmentComponent
 import com.guangkuo.mvpfwk.di.modules.FragmentModule
-import com.guangkuo.mvpfwk.utils.NetworkUtils
-import com.guangkuo.mvpfwk.utils.ToastUtils
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 

@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import com.blankj.utilcode.util.NetworkUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.guangkuo.mvpfwk.R
 import com.guangkuo.mvpfwk.app.App
 import com.guangkuo.mvpfwk.callback.RequestPermissionCallback
@@ -15,8 +17,6 @@ import com.guangkuo.mvpfwk.data.remote.error.ApiException
 import com.guangkuo.mvpfwk.di.components.ActivityComponent
 import com.guangkuo.mvpfwk.di.components.DaggerActivityComponent
 import com.guangkuo.mvpfwk.di.modules.ActivityModule
-import com.guangkuo.mvpfwk.utils.NetworkUtils
-import com.guangkuo.mvpfwk.utils.ToastUtils
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 

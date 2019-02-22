@@ -1,6 +1,7 @@
 package com.guangkuo.mvpfwk.app
 
 import android.app.Application
+import com.blankj.utilcode.util.Utils
 import com.guangkuo.mvpfwk.di.components.AppComponent
 import com.guangkuo.mvpfwk.di.components.DaggerAppComponent
 import com.guangkuo.mvpfwk.di.modules.AppModule
@@ -15,7 +16,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        Utils.init(this)
         initComponent()// 初始化组建
     }
 
@@ -24,9 +25,6 @@ class App : Application() {
     }
 
     companion object {
-        lateinit var instance: App
-            private set
-
         fun getAppComponent(app: App): AppComponent {
             return app.appComponent
         }

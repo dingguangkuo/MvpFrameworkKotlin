@@ -1,7 +1,13 @@
 # MvpFrameworkKotlin
 使用 Kotlin + MVP + RxJava2 + Retrofit2 + Dagger2 搭建 Android 应用快速开发框架
 
-#### Kotlin中 ? / ?: / ?. / !!
+## 基本数据类型
+
+
+
+
+
+## Kotlin中 ?  ?:  ?.  !!
 
 ```kotlin
 ?可空类型，可以赋值为null

@@ -1,9 +1,9 @@
 package com.guangkuo.mvpfwk.data.remote.error
 
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.Utils
 import com.google.gson.JsonParseException
 import com.guangkuo.mvpfwk.R
-import com.guangkuo.mvpfwk.app.App
-import com.guangkuo.mvpfwk.utils.LogUtils
 import org.json.JSONException
 import retrofit2.HttpException
 import java.net.ConnectException
@@ -16,7 +16,7 @@ object ExceptionEngine {
         if (e is HttpException) {
             // HTTP错误（401/403/404/408/500/502等）
             LogUtils.e("HttpException code = " + e.code())
-            ex = ApiException(e, ErrorCode.HTTP_ERROR, App.instance.getString(R.string.error_network))
+            ex = ApiException(e, ErrorCode.HTTP_ERROR, Utils.getApp().getString(R.string.error_network))
             return ex
         } else if (e is ServerException) {
             // 服务器返回的错误
@@ -24,16 +24,16 @@ object ExceptionEngine {
             return ex
         } else if (e is JsonParseException || e is JSONException || e is ParseException) {
             // 均视为解析错误
-            ex = ApiException(e, ErrorCode.PARSE_ERROR, App.instance.getString(R.string.error_parse))
+            ex = ApiException(e, ErrorCode.PARSE_ERROR, Utils.getApp().getString(R.string.error_parse))
             return ex
         } else if (e is ConnectException || e is SocketTimeoutException) {
             // 均视为网络错误
-            ex = ApiException(e, ErrorCode.NETWORK_ERROR, App.instance.getString(R.string.error_connection))
+            ex = ApiException(e, ErrorCode.NETWORK_ERROR, Utils.getApp().getString(R.string.error_connection))
             return ex
         } else {
             // 未知错误
             e.printStackTrace()
-            ex = ApiException(e, ErrorCode.UNKNOWN, App.instance.getString(R.string.error_unknown))
+            ex = ApiException(e, ErrorCode.UNKNOWN, Utils.getApp().getString(R.string.error_unknown))
             return ex
         }
     }

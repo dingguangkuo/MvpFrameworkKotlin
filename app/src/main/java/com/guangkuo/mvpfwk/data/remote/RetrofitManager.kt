@@ -1,22 +1,20 @@
 package com.guangkuo.mvpfwk.data.remote
 
+import com.blankj.utilcode.util.Utils
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.guangkuo.mvpfwk.BuildConfig
-import com.guangkuo.mvpfwk.app.App
 import com.guangkuo.mvpfwk.app.AppConfig
 import com.guangkuo.mvpfwk.data.remote.interceptor.RewriteCacheControlInterceptor
-
-import java.io.File
-import java.util.concurrent.TimeUnit
-
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
+import java.util.concurrent.TimeUnit
 
 object RetrofitManager {
     private const val CONNECT_TIMEOUT = 60L
@@ -39,12 +37,12 @@ object RetrofitManager {
                 synchronized(RetrofitManager::class.java) {
                     if (mOkHttpClient == null) {
                         val builder = OkHttpClient.Builder()
-                                .cache(Cache(File(App.instance.cacheDir, "HttpCache"), (1024 * 1024 * 100).toLong()))
+                                .cache(Cache(File(Utils.getApp().cacheDir, "HttpCache"), (1024 * 1024 * 100).toLong()))
                                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                                 .addInterceptor(mRewriteCacheControlInterceptor)
-                                .cookieJar(PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.instance)))
+                                .cookieJar(PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(Utils.getApp())))
                         // Log信息拦截器
                         if (BuildConfig.DEBUG) {
                             val loggingInterceptor = HttpLoggingInterceptor()
